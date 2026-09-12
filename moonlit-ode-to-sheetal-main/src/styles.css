@@ -1,0 +1,298 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system: "Under the same moon" — midnight scrapbook.
+ * Deep navy night sky, torn cream paper, gold stars, handwritten script.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* scrapbook palette */
+  --color-night: var(--night);
+  --color-night-deep: var(--night-deep);
+  --color-paper: var(--paper);
+  --color-paper-shade: var(--paper-shade);
+  --color-ink: var(--ink);
+  --color-gold: var(--gold);
+  --color-moon: var(--moon);
+  --color-periwinkle: var(--periwinkle);
+  --color-tape: var(--tape);
+
+  --font-script: "Parisienne", cursive;
+  --font-hand: "Caveat", cursive;
+  --font-body: "Karla", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-paper: 0 18px 40px -18px oklch(0 0 0 / 0.75);
+  --shadow-glow: 0 0 60px oklch(0.93 0.06 90 / 0.35);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --night: oklch(0.22 0.05 264);
+  --night-deep: oklch(0.15 0.045 265);
+  --paper: oklch(0.93 0.018 85);
+  --paper-shade: oklch(0.87 0.025 85);
+  --ink: oklch(0.3 0.03 265);
+  --gold: oklch(0.82 0.11 85);
+  --moon: oklch(0.95 0.03 95);
+  --periwinkle: oklch(0.72 0.07 275);
+  --tape: oklch(0.88 0.02 260 / 0.55);
+
+  --background: var(--night-deep);
+  --foreground: oklch(0.95 0.02 90);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--night);
+  --popover-foreground: oklch(0.95 0.02 90);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.18 0.04 265);
+  --secondary: oklch(0.3 0.05 265);
+  --secondary-foreground: oklch(0.95 0.02 90);
+  --muted: oklch(0.3 0.045 265);
+  --muted-foreground: oklch(0.75 0.03 265);
+  --accent: var(--periwinkle);
+  --accent-foreground: oklch(0.18 0.04 265);
+  --destructive: oklch(0.6 0.2 27);
+  --destructive-foreground: oklch(0.97 0.01 90);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--gold);
+}
+
+.dark {
+  --background: var(--night-deep);
+  --foreground: oklch(0.95 0.02 90);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ---------- scrapbook primitives ---------- */
+
+@utility paper {
+  background:
+    linear-gradient(oklch(1 0 0 / 0.35), oklch(1 0 0 / 0)) ,
+    var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-paper);
+}
+
+@utility torn-edge {
+  clip-path: polygon(
+    0% 2%, 4% 0.4%, 12% 1.6%, 22% 0.2%, 33% 1.4%, 46% 0.3%, 58% 1.5%,
+    70% 0.4%, 82% 1.6%, 92% 0.5%, 100% 1.8%, 99% 12%, 100% 26%, 98.6% 40%,
+    100% 55%, 98.8% 70%, 100% 84%, 99% 98.4%, 88% 99.6%, 76% 98.4%,
+    64% 99.7%, 51% 98.5%, 38% 99.8%, 26% 98.6%, 14% 99.8%, 3% 98.6%,
+    0.6% 86%, 1.6% 72%, 0.3% 58%, 1.4% 44%, 0.2% 30%, 1.5% 16%
+  );
+}
+
+@utility tape-strip {
+  position: absolute;
+  background: var(--color-tape);
+  backdrop-filter: blur(1px);
+  box-shadow: 0 2px 6px oklch(0 0 0 / 0.35);
+  border-left: 1px dashed oklch(1 0 0 / 0.3);
+  border-right: 1px dashed oklch(1 0 0 / 0.3);
+}
+
+@utility script {
+  font-family: var(--font-script);
+  font-weight: 400;
+}
+
+@utility hand {
+  font-family: var(--font-hand);
+}
+
+@utility glow-text {
+  text-shadow:
+    0 0 12px oklch(0.95 0.05 95 / 0.55),
+    0 0 40px oklch(0.9 0.08 90 / 0.35);
+}
+
+@utility moon-glow {
+  box-shadow:
+    inset -14px -10px 30px oklch(0.65 0.03 265 / 0.55),
+    0 0 60px oklch(0.95 0.05 95 / 0.45),
+    0 0 140px oklch(0.9 0.08 90 / 0.28);
+}
+
+@utility gold-rule {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+}
+
+/* ---------- cinematic opening ---------- */
+
+.hero-title {
+  max-width: 12ch;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.5rem, 9vw, 8.5rem);
+  font-weight: 700;
+  line-height: 0.84;
+  letter-spacing: 0;
+  text-wrap: balance;
+  text-shadow: 0 0 40px oklch(0.85 0.05 235 / 0.16);
+}
+
+.hero-title em {
+  display: inline-block;
+  padding-left: 1.15em;
+  font-weight: 400;
+}
+
+.hero-moon {
+  position: absolute;
+  top: -30vw;
+  right: -15vw;
+  width: min(76vw, 950px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: var(--color-moon);
+  box-shadow: 0 0 90px oklch(0.82 0.08 235 / 0.28);
+  opacity: 0.92;
+}
+
+.hero-crater {
+  position: absolute;
+  display: block;
+  border-radius: 9999px;
+  background: oklch(0.55 0.035 240 / 0.18);
+  box-shadow: inset 0 0 24px oklch(0.35 0.03 250 / 0.12);
+}
+
+.hero-crater-one { top: 32%; left: 15%; width: 25%; height: 18%; }
+.hero-crater-two { top: 48%; right: 11%; width: 31%; height: 23%; }
+.hero-crater-three { top: -4%; left: 24%; width: 20%; height: 14%; }
+
+@media (max-width: 639px) {
+  .hero-moon {
+    top: -17vw;
+    right: -35vw;
+    width: 105vw;
+    opacity: 0.38;
+  }
+
+  .hero-title {
+    max-width: 9ch;
+    font-size: 3.9rem;
+    line-height: 0.88;
+  }
+
+  .hero-title em {
+    padding-left: 0.35em;
+  }
+}
+
+/* ---------- animations ---------- */
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-2%, -1.5%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+  50% { transform: translateY(-8px) rotate(var(--tilt, 0deg)); }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flicker {
+  0%, 100% { transform: scaleY(1) translateX(0); opacity: 1; }
+  40% { transform: scaleY(1.18) translateX(1px); opacity: 0.86; }
+  70% { transform: scaleY(0.92) translateX(-1px); opacity: 0.95; }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate3d(var(--dx, 0px), 105vh, 0) rotate(720deg); opacity: 0; }
+}
+
+@keyframes shoot {
+  0% { transform: translate3d(0,0,0) rotate(35deg) scaleX(0); opacity: 0; }
+  10% { opacity: 1; scaleX: 1; }
+  100% { transform: translate3d(60vw, 45vh, 0) rotate(35deg) scaleX(1); opacity: 0; }
+}
+
+.animate-twinkle { animation: twinkle 3.5s ease-in-out infinite; }
+.animate-drift { animation: drift 40s ease-in-out infinite; }
+.animate-float-soft { animation: float-soft 7s ease-in-out infinite; }
+.animate-rise-in { animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-flicker { animation: flicker 1.4s ease-in-out infinite; transform-origin: bottom center; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-drift, .animate-float-soft, .animate-twinkle { animation: none; }
+  html { scroll-behavior: auto; }
+}
