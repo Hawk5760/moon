@@ -60,11 +60,11 @@ export const config = {
 
   /** Friendship told in moon phases — swap photos & captions freely */
   memories: [
-    { phase: "🌑", title: "Beginning", caption: "two strangers, one very ordinary day.", photo: sheetalPortrait },
-    { phase: "🌒", title: "Growing", caption: "conversations that stopped needing a reason.", photo: sheetalFlowers },
-    { phase: "🌓", title: "Crazy memories", caption: "the plans nobody else would have said yes to.", photo: sheetalGuitar },
-    { phase: "🌕", title: "Best moments", caption: "full light, full laughter, nothing missing.", photo: sheetalIeee },
-    { phase: "🌖", title: "Things changed", caption: "different cities, same sky, same people.", photo: moonOcean },
+    { phase: "🌑", title: "Beginning", caption: "", photo: sheetalPortrait },
+    { phase: "🌒", title: "Growing", caption: "", photo: sheetalFlowers },
+    { phase: "🌓", title: "Crazy memories", caption: "", photo: sheetalGuitar },
+    { phase: "🌕", title: "Best moments", caption: "", photo: sheetalIeee },
+    { phase: "🌖", title: "Things changed", caption: "", photo: moonOcean },
   ],
 
   /** 5 "Do you remember?" questions */
@@ -134,11 +134,11 @@ export const config = {
   music: {
     url: "",
     playlist: [
-      "Moon River — Frank Ocean",
-      "Talking To The Moon — Bruno Mars",
-      "Space Song — Beach House",
-      "All I Want — Kodaline",
-      "The Night We Met — Lord Huron",
+      "",
+      "",
+      "",
+      "",
+      "",
     ],
   },
 };
